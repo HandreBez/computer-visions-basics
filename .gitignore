@@ -1,1 +1,22 @@
-.vscode
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Data (CIFAR-10 downloads via torchvision into ./data — ~170MB, don't commit it)
+data/
+*.pt
+*.pth
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/

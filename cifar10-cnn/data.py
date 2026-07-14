@@ -1,23 +1,3 @@
-"""
-CIFAR-10 data loading — skeleton only.
-
-Fill in using the reasoning from today's session:
-- ToTensor() converts PIL Image (0-255 ints, HWC) -> tensor (0-1 floats, CHW)
-- Normalize(mean, std) centers the data using per-channel stats
-- Transforms run fresh every __getitem__ call, which is why random
-  augmentations (RandomCrop, RandomHorizontalFlip) actually give variety
-  across epochs instead of a fixed cached version
-- Train and test sets should NOT use the same transforms — augmentation
-  (random crop/flip) belongs on the TRAINING set only. Think about why:
-  would you want random flips applied to your test/eval images too?
-
-CIFAR-10 per-channel mean/std (commonly used precomputed values, RGB order):
-    mean = (0.4914, 0.4822, 0.4465)
-    std  = (0.2470, 0.2435, 0.2616)
-
-No autocomplete — type it yourself.
-"""
-
 import torch
 from torch.utils.data import DataLoader
 import torchvision

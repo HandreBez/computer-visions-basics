@@ -25,6 +25,7 @@ No autocomplete — type it yourself, even the parts that feel obvious.
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 
 class CIFAR10CNN(nn.Module):
@@ -33,27 +34,40 @@ class CIFAR10CNN(nn.Module):
 
         # TODO: define your conv layers here.
         # Think about in_channels/out_channels chaining between them.
-        # e.g. self.conv1 = nn.Conv2d(...)
+        self.conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1)
+        self.conv2 = nn.Conv2d(16, 32, kernel_size=3, padding=1)
+        self.conv3 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
 
         # TODO: define your pooling layer(s) here.
-        # e.g. self.pool = nn.MaxPool2d(...)
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
 
         # TODO: define your final fully-connected (Linear) layer here.
         # Remember: in_features must match your flattened vector size,
         # out_features must be 10.
-        # e.g. self.fc = nn.Linear(...)
+        self.fc = nn.Linear(in_features=4096, out_features=10)
 
         pass
 
     def forward(self, x):
-        # TODO: chain the layers together here.
-        # Don't forget:
-        #   - an activation function (e.g. ReLU) after each conv layer —
-        #     we haven't discussed this yet, worth asking about tomorrow
-        #     if it's not clear why it's needed
-        #   - flattening before the Linear layer (x.view(...) or torch.flatten(...))
+        
+        #Layer 1
+        x = self.conv1(x)
+        x = F.relu(x)
 
-        pass
+        #Layer2
+        x = self.conv2(x)
+        x = F.relu(x)
+        x = self.pool(x)
+
+        #Layer 3
+        x = self.conv3(x)
+        x = F.relu(x)
+        x = self.pool(x)
+
+        #Flattening
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
+        return x
 
 
 if __name__ == "__main__":

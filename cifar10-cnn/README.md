@@ -19,22 +19,22 @@ Linear:       [10]
 
 ## Files
 
-- `model.py` — model architecture (currently a skeleton, layers not yet filled in)
+- `data.py` — CIFAR-10 loading via torchvision, train/test transforms
+- `model.py` — model architecture (filled in, matches shape trace above)
 - `train.py` — training loop (not started)
 - `visualize_filters.py` — filter visualization with matplotlib (not started)
 
 ## Status
 
 - [x] Shape logic worked through by hand (channels, padding, pooling, flattening)
-- [ ] Model architecture filled in
-- [ ] Data loading set up (torchvision)
+- [x] Model architecture filled in
+- [x] Data loading set up (torchvision)
 - [ ] Training loop written
 - [ ] Model trained, results recorded
 - [ ] Filters visualized
 
 ## Notes / open questions
 
-- Activation functions (ReLU) not yet covered — needed between conv layers,
-  to be added once understood (without them, stacked conv layers collapse to
-  one linear operation regardless of depth).
-- Data loading not yet touched — need to load CIFAR-10 via torchvision.
+- Activation functions (ReLU) — now used between conv layers in the
+  architecture; without them, stacked conv layers collapse to one linear
+  operation regardless of depth.
